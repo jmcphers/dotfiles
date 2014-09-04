@@ -20,12 +20,13 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'junegunn/vim-easy-align'
 Plugin 'fatih/vim-go'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'godlygeek/csapprox'
 
 " Preferences
 set nu
 set noerrorbells visualbell t_vb=
 set wmh=0
-set ts=3
+ set ts=3
 set sw=3
 set et
 set backupdir=~/.vimbackup
@@ -55,6 +56,7 @@ nmap <C-U> :cp<CR>
 
 " RStudio
 au FileType cpp set makeprg=make\ \-j4\ -C\ ~/rstudio-build
+au FileType go set makeprg=make
 nmap <Leader>rt :Dispatch ctags --recurse --verbose -o ~/rstudio/src/cpp/tags ~/rstudio/src/cpp
 nmap <Leader>a :Dispatch ant draft -f ~/rstudio/src/gwt/build.xml<CR>
 nmap <Leader>m :Make<CR>
@@ -65,10 +67,24 @@ let g:Powerline_symbols = 'fancy'
 
 " Shortcuts
 map <Leader>d :YcmCompleter GoToImprecise<CR>
-map <Leader>f :Ag --ignore tags <cword><CR>
+map <Leader>f :Ag -U --ignore tags <cword><CR>
 map <Leader>p :!par w79<CR>
 map <Leader>= :EasyAlign =<CR>
 nmap <Leader>t :sp ~/Dropbox/todo.txt<CR>
+nmap <Leader>g :Ggrep <cword><CR>
+
+" Go
+au FileType go nmap <Leader>i <Plug>(go-info)
+au FileType go nmap <Leader>gd <Plug>(go-doc)
+au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
+au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
+au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>t <Plug>(go-test)
+au FileType go nmap gd <Plug>(go-def)
+au FileType go nmap <Leader>ds <Plug>(go-def-split)
+au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
+au FileType go nmap <Leader>dt <Plug>(go-def-tab)
 
 " Plugin-supplied shortcuts
 "
