@@ -1,5 +1,5 @@
-set rtp+=~/.vim/bundle/vundle
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
   
 " let Vundle manage Vundle
 " required! 
@@ -21,6 +21,7 @@ Plugin 'junegunn/vim-easy-align'
 Plugin 'fatih/vim-go'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'godlygeek/csapprox'
+Plugin 'flazz/vim-colorschmes'
 
 " Preferences
 set nu
@@ -45,6 +46,7 @@ set nocompatible
 set cursorline
 syn on 
 colors jellybeans
+highlight ColorColumn ctermbg=16
 
 " Speedy shortcuts
 map <C-J> <C-W>j<C-W>_
