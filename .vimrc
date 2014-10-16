@@ -27,8 +27,8 @@ Plugin 'flazz/vim-colorschmes'
 set nu
 set noerrorbells visualbell t_vb=
 set wmh=0
- set ts=3
-set sw=3
+set ts=4
+set sw=4
 set et
 set backupdir=~/.vimbackup
 set directory=~/.vimswap
@@ -57,8 +57,7 @@ nmap <C-I> :cn<CR>
 nmap <C-U> :cp<CR>
 
 " RStudio
-au FileType cpp set makeprg=make\ \-j4\ -C\ ~/rstudio-build
-au FileType go set makeprg=make
+au FileType cpp setlocal makeprg=make\ \-j4\ -C\ ~/rstudio-build
 nmap <Leader>rt :Dispatch ctags --recurse --verbose -o ~/rstudio/src/cpp/tags ~/rstudio/src/cpp
 nmap <Leader>a :Dispatch ant draft -f ~/rstudio/src/gwt/build.xml<CR>
 nmap <Leader>m :Make<CR>
@@ -67,9 +66,16 @@ nmap <Leader>m :Make<CR>
 let JSHintUpdateWriteOnly=1
 let g:Powerline_symbols = 'fancy'
 
+" RStudio Connect
+au FileType go setlocal makeprg=make
+
+" Indent prefs by filetype
+au FileType javascript setlocal shiftwidth=2 tabstop=2 
+au FileType cpp setlocal shiftwidth=3 tabstop=3
+
 " Shortcuts
 map <Leader>d :YcmCompleter GoToImprecise<CR>
-map <Leader>f :Ag -U --ignore tags <cword><CR>
+map <Leader>f :Ag -U --ignore tags --ignore *.a <cword><CR>
 map <Leader>p :!par w79<CR>
 map <Leader>= :EasyAlign =<CR>
 nmap <Leader>t :sp ~/Dropbox/todo.txt<CR>
@@ -82,7 +88,6 @@ au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
 au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
 au FileType go nmap <leader>r <Plug>(go-run)
 au FileType go nmap <leader>b <Plug>(go-build)
-au FileType go nmap <leader>t <Plug>(go-test)
 au FileType go nmap gd <Plug>(go-def)
 au FileType go nmap <Leader>ds <Plug>(go-def-split)
 au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
