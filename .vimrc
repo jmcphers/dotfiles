@@ -40,18 +40,32 @@ set hls
 set incsearch
 set laststatus=2
 set encoding=utf-8
-set gfn=Sauce\ Code\ Powerline\ Light:h11
 set colorcolumn=80
 set t_Co=256
 set showcmd
 let mapleader = ","
 set nocompatible
 set cursorline
+set bs=2 
 syn on 
 colors jellybeans
 highlight ColorColumn ctermbg=16
 
+set guioptions-=m  " disable GUI menubar
+set guioptions-=r  " disable GUI scrollbar
+set guioptions-=T  " disable GUI toolbar
+
+if has("win32") || has("win16")
+  set gfn=Consolas:h9:cANSI 
+  let g:airline_powerline_fonts = 0
+  set 
+else
+  set gfn=Sauce\ Code\ Powerline\ Light:h11
+  let g:airline_powerline_fonts = 1
+endif
+
 " Speedy shortcuts
+
 map <C-J> <C-W>j<C-W>_
 map <C-K> <C-W>k<C-W>_
 imap <C-I> <ESC>:cn<CR>
@@ -94,7 +108,6 @@ au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
 au FileType go nmap <Leader>dt <Plug>(go-def-tab)
 
 " Airline settings
-let g:airline_powerline_fonts = 1
 let g:airline#extensions#whitespace#enabled = 0
 
 " Plugin-supplied shortcuts
