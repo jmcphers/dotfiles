@@ -46,8 +46,9 @@ set showcmd
 let mapleader = ","
 set nocompatible
 set cursorline
-set bs=2 
-syn on 
+set bs=2
+set showcmd
+syn on
 colors jellybeans
 highlight ColorColumn ctermbg=16
 
@@ -86,6 +87,7 @@ au FileType go setlocal makeprg=make
 au FileType javascript setlocal shiftwidth=2 tabstop=2 
 au FileType cpp setlocal shiftwidth=3 tabstop=3
 au FileType r setlocal shiftwidth=2 tabstop=2 et 
+au FileType ruby setlocal shiftwidth=2 tabstop=2 et 
 
 " Shortcuts
 map <Leader>d :YcmCompleter GoToImprecise<CR>
