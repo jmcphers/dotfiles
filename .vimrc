@@ -91,7 +91,7 @@ au FileType ruby setlocal shiftwidth=2 tabstop=2 et
 
 " Shortcuts
 map <Leader>d :YcmCompleter GoToImprecise<CR>
-map <Leader>f :Ag -U --ignore tags --ignore *.a --ignore *.min.* <cword><CR>
+map <Leader>f :Ag -U --ignore tags --ignore *.a --ignore *.min.* --ignore *.cache.js <cword><CR>
 map <Leader>p :!par w79<CR>
 map <Leader>= :EasyAlign =<CR>
 nmap <Leader>t :sp ~/Dropbox/todo.txt<CR>
