@@ -49,8 +49,10 @@ set cursorline
 set bs=2
 set showcmd
 syn on
-colors jellybeans
-highlight ColorColumn ctermbg=16
+let g:solarized_termcolors=256
+let g:solarized_italic=0
+set background=light
+colors solarized
 
 set guioptions-=m  " disable GUI menubar
 set guioptions-=r  " disable GUI scrollbar
