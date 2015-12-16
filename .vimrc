@@ -23,6 +23,10 @@ Plugin 'junegunn/vim-easy-align'
 Plugin 'fatih/vim-go'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'godlygeek/csapprox'
+Plugin 'leafgarland/typescript-vim'
+
+" requires server: npm install -g clausreinke/typescript-tools
+Plugin 'clausreinke/typescript-tools.vim'
 
 call vundle#end()
 filetype plugin indent on
@@ -121,6 +125,11 @@ let g:airline#extensions#whitespace#enabled = 0
 " [c         previous hunk
 " <Leader>hs stage hunk
 " <Leader>hr revert hunk
-"
 
-"
+" Typescript
+au BufRead,BufNewFile *.ts      setlocal filetype=typescript
+if !exists("g:ycm_semantic_triggers")
+   let g:ycm_semantic_triggers = {}
+endif
+let g:ycm_semantic_triggers['typescript'] = ['.']
+
