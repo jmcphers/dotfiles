@@ -95,6 +95,9 @@ au FileType cpp setlocal shiftwidth=3 tabstop=3
 au FileType r setlocal shiftwidth=2 tabstop=2 et 
 au FileType ruby setlocal shiftwidth=2 tabstop=2 et 
 
+" enable spell checking in Markdown files
+au FileType markdown setlocal spell spelllang=en_us
+
 " Shortcuts
 map <Leader>d :YcmCompleter GoToImprecise<CR>
 map <Leader>f :Ag -U --ignore tags --ignore *.a --ignore *.min.* --ignore *.cache.js <cword><CR>
