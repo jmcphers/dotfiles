@@ -45,6 +45,7 @@ set incsearch
 set laststatus=2
 set encoding=utf-8
 set colorcolumn=80
+set smarttab
 set t_Co=256
 set showcmd
 let mapleader = ","
@@ -52,6 +53,25 @@ set nocompatible
 set cursorline
 set bs=2
 set showcmd
+set autoindent
+set ruler
+set wildmenu
+set display+=lastline
+set autoread
+
+" don't treat numbers with leading 0 as octal
+set nrformats-=octal
+
+" make sure one line is visible below/above cursor
+if !&scrolloff
+  set scrolloff=1
+endif
+
+" delete comment character when joining commented lines
+if v:version > 703 || v:version == 703 && has("patch541")
+  set formatoptions+=j
+endif
+
 syn on
 let g:solarized_termcolors=256
 let g:solarized_italic=0
@@ -95,8 +115,9 @@ au FileType cpp setlocal shiftwidth=3 tabstop=3
 au FileType r setlocal shiftwidth=2 tabstop=2 et 
 au FileType ruby setlocal shiftwidth=2 tabstop=2 et 
 
-" enable spell checking in Markdown files
+" enable spell checking in files primarily composed of prose
 au FileType markdown setlocal spell spelllang=en_us
+au FileType gitcommit setlocal spell spelllang=en_us
 
 " Shortcuts
 map <Leader>d :YcmCompleter GoToImprecise<CR>
