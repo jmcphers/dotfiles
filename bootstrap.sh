@@ -17,6 +17,9 @@ git clone https://github.com/flazz/vim-colorschemes.git $VIMRT/vim-colorschemes
 mv $VIMRT/vim-colorschemes/colors $VIMRT/colors
 rm -rf $VIMRT/vim-colorschemes
 
+# install tmux plugin manager
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
 # use vim color schemes for neovim
 mkdir -p ~/.nvim
 ln -s $VIMRT/colors ~/.nvim/colors
