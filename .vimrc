@@ -24,6 +24,7 @@ Plugin 'fatih/vim-go'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'godlygeek/csapprox'
 Plugin 'leafgarland/typescript-vim'
+Plugin 'freitass/todo.txt-vim'
 
 " requires server: npm install -g clausreinke/typescript-tools
 Plugin 'clausreinke/typescript-tools.vim'
@@ -122,6 +123,7 @@ au FileType gitcommit setlocal spell spelllang=en_us
 " Shortcuts
 map <Leader>d :YcmCompleter GoToImprecise<CR>
 map <Leader>f :Ag -U --ignore tags --ignore *.a --ignore *.min.* --ignore *.cache.js <cword><CR>
+map <Leader>s :Ag -U --ignore tags --ignore *.a --ignore *.min.* --ignore *.cache.js 
 map <Leader>p :!par w79<CR>
 map <Leader>= :EasyAlign =<CR>
 nmap <Leader>t :sp ~/Dropbox/todo.txt<CR>
