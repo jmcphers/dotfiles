@@ -12,7 +12,6 @@ Plugin 'bling/vim-airline'
 Plugin 'tpope/vim-markdown'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-dispatch'
 Plugin 'marijnh/tern_for_vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'ctrlpvim/ctrlp.vim'
@@ -21,10 +20,20 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/syntastic'
 Plugin 'junegunn/vim-easy-align'
 Plugin 'fatih/vim-go'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'godlygeek/csapprox'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'freitass/todo.txt-vim'
+
+if has("nvim") 
+  " in the neovim gui, use a native neovim make plugin
+  Plugin 'neomake/neomake'
+else
+  Plugin 'tpope/vim-dispatch'
+endif
+
+" gitgutter doesn't play very nicely with neovim.app
+if !has("nvim")
+  Plugin 'airblade/vim-gitgutter'
+endif
 
 " requires server: npm install -g clausreinke/typescript-tools
 Plugin 'clausreinke/typescript-tools.vim'
@@ -47,7 +56,6 @@ set laststatus=2
 set encoding=utf-8
 set colorcolumn=80
 set smarttab
-set t_Co=256
 set showcmd
 let mapleader = ","
 set nocompatible
@@ -59,6 +67,14 @@ set ruler
 set wildmenu
 set display+=lastline
 set autoread
+
+" set up colors appropriately
+if has('nvim')
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+else
+  set t_Co=256
+endif
+
 
 " don't treat numbers with leading 0 as octal
 set nrformats-=octal
