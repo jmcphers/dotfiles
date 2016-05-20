@@ -103,7 +103,8 @@ nmap <C-U> :cp<CR>
 
 " RStudio
 au FileType cpp setlocal makeprg=make\ \-j4\ -C\ ~/rstudio-build
-nmap <Leader>rt :Dispatch ctags --recurse --verbose -o ~/rstudio/src/cpp/tags ~/rstudio/src/cpp
+nmap <Leader>rt :Dispatch ctags --recurse --verbose -o ~/rstudio/src/cpp/tags ~/rstudio/src/cpp<CR>
+nmap <Leader>rc :Dispatch cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -B ~/rstudio-build -H~/rstudio/src/cpp<CR>
 nmap <Leader>a :Dispatch ant draft -f ~/rstudio/src/gwt/build.xml<CR>
 nmap <Leader>m :Make<CR>
 
