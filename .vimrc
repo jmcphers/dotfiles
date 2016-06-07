@@ -8,10 +8,12 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 " Vundles
-Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tpope/vim-markdown'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-dispatch'
 Plugin 'marijnh/tern_for_vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'ctrlpvim/ctrlp.vim'
@@ -26,8 +28,6 @@ Plugin 'freitass/todo.txt-vim'
 if has("nvim") 
   " in the neovim gui, use a native neovim make plugin
   Plugin 'neomake/neomake'
-else
-  Plugin 'tpope/vim-dispatch'
 endif
 
 " gitgutter doesn't play very nicely with neovim.app
@@ -121,7 +121,7 @@ nmap <C-U> :cp<CR>
 " RStudio
 au FileType cpp setlocal makeprg=make\ \-j4\ -C\ ~/rstudio-build
 nmap <Leader>rt :Dispatch ctags --recurse --verbose -o ~/rstudio/src/cpp/tags ~/rstudio/src/cpp<CR>
-nmap <Leader>rc :Dispatch cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -B ~/rstudio-build -H~/rstudio/src/cpp<CR>
+nmap <Leader>rc :Dispatch cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -B~/rstudio-build -H~/rstudio/src/cpp<CR>
 nmap <Leader>a :Dispatch ant draft -f ~/rstudio/src/gwt/build.xml<CR>
 nmap <Leader>m :Make<CR>
 
@@ -147,6 +147,7 @@ map <Leader>= :EasyAlign =<CR>
 nmap <Leader>t :sp ~/Dropbox/todo.txt<CR>
 nmap <Leader>g :Ggrep <cword><CR>
 nmap <Leader>b :CtrlPBuffer<CR>
+nmap <Leader>n :noh<CR>
 
 " Go
 au FileType go nmap <Leader>i <Plug>(go-info)
