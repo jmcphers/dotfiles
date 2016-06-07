@@ -67,6 +67,7 @@ set ruler
 set wildmenu
 set display+=lastline
 set autoread
+set listchars+=space:·,eol:¬
 
 " set up colors appropriately
 if has('nvim')
