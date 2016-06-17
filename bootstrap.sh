@@ -28,6 +28,7 @@ ln -s $VIMRT/colors ~/.nvim/colors
 ln -s ~/dotfiles/.vimrc $VIMRC
 ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
 ln -s ~/dotfiles/.todo.cfg ~/.todo.cfg
+ln -s ~/dotfiles/UltiSnips ~/.vim/UltiSnips
 
 # create vim swapfile targets
 mkdir -p ~/.vimbackup

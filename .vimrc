@@ -24,6 +24,7 @@ Plugin 'junegunn/vim-easy-align'
 Plugin 'fatih/vim-go'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'freitass/todo.txt-vim'
+Plugin 'SirVer/ultisnips'
 
 if has("nvim") 
   " in the neovim gui, use a native neovim make plugin
@@ -177,4 +178,10 @@ if !exists("g:ycm_semantic_triggers")
    let g:ycm_semantic_triggers = {}
 endif
 let g:ycm_semantic_triggers['typescript'] = ['.']
+
+" UltiSnips configuration settings
+let g:UltiSnipsExpandTrigger="<c-tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-u>"
+let g:UltiSnipsJumpBackwardTrigger="<c-i>"
+let g:UltiSnipsEditSplit="vertical"
 
