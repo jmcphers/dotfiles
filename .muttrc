@@ -1,0 +1,19 @@
+set realname = "Jonathan McPherson"
+set imap_user = 'jonathan@rstudio.com'
+set imap_pass = "`gpg --use-agent --quiet --batch -d ~/.passwd/jonathan@rstudio.com.gpg`"
+set spoolfile = imaps://imap.gmail.com:993/INBOX
+set smtp_url = "smtp://jonathan@smtp.gmail.com:587/"
+set folder = "imaps://imap.gmail.com:993"
+set record = "+[Gmail]/Sent Mail"
+set postponed = "+[Gmail]/Drafts"
+set header_cache = "~/.mutt/cache/headers"
+set message_cachedir = "~/.mutt/cache/bodies"
+set certificate_file = ~/.mutt/certificates
+set sort = threads
+set move = no
+set query_command = "goobook query '%s'"
+bind editor <Tab> complete-query
+
+macro index,pager e  "<save-message>=[Gmail]/All Mail<enter><enter>" "Archive conversation"
+
+
