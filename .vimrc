@@ -26,6 +26,7 @@ Plugin 'leafgarland/typescript-vim'
 Plugin 'freitass/todo.txt-vim'
 Plugin 'SirVer/ultisnips'
 Plugin 'editorconfig/editorconfig-vim'
+Plugin 'shawncplus/phpcomplete.vim'
 
 if has("nvim") 
   " in the neovim gui, use a native neovim make plugin
