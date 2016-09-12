@@ -178,6 +178,12 @@ let g:airline#extensions#whitespace#enabled = 0
 " <Leader>hs stage hunk
 " <Leader>hr revert hunk
 
+" use the silver searcher for ctrl-p browsing (if installed)
+let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+if executable('ag')
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
+
 " Typescript
 au BufRead,BufNewFile *.ts      setlocal filetype=typescript
 if !exists("g:ycm_semantic_triggers")
