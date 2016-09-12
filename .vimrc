@@ -70,7 +70,6 @@ set ruler
 set wildmenu
 set display+=lastline
 set autoread
-set listchars+=space:·,eol:¬
 
 " set up colors appropriately
 if has('nvim')
@@ -91,6 +90,11 @@ endif
 " delete comment character when joining commented lines
 if v:version > 703 || v:version == 703 && has("patch541")
   set formatoptions+=j
+endif
+
+" use fancy listchars where supported
+if has("patch711")
+  set listchars+=space:·,eol:¬
 endif
 
 syn on
