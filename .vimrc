@@ -1,47 +1,56 @@
 set nocompatible
 filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-  
-" let Vundle manage Vundle
-" required! 
-Plugin 'gmarik/Vundle.vim'
 
-" Vundles
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'tpope/vim-markdown'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-dispatch'
-Plugin 'marijnh/tern_for_vim'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'rking/ag.vim'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'scrooloose/syntastic'
-Plugin 'junegunn/vim-easy-align'
-Plugin 'fatih/vim-go'
-Plugin 'leafgarland/typescript-vim'
-Plugin 'freitass/todo.txt-vim'
-Plugin 'SirVer/ultisnips'
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'shawncplus/phpcomplete.vim'
+call plug#begin('~/.vim/plugged')
+
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'tpope/vim-markdown'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-dispatch'
+Plug 'marijnh/tern_for_vim'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'rking/ag.vim'
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/syntastic'
+Plug 'junegunn/vim-easy-align'
+Plug 'fatih/vim-go'
+Plug 'leafgarland/typescript-vim'
+Plug 'freitass/todo.txt-vim'
+Plug 'SirVer/ultisnips'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'shawncplus/phpcomplete.vim'
+
+" TypeScript tools/server
+function! InstallTSServer(info)
+  if a:info.status == 'installed' || a:info.force
+    !npm install -g typescript
+    !npm install -g clausreinke/typescript-tools
+  endif
+endfunction
+Plug 'clausreinke/typescript-tools.vim', { 'do': function('InstallTSServer') }
+
+" YouCompleteMe requires compilation after install
+function! BuildYCM(info)
+  if a:info.status == 'installed' || a:info.force
+    !./install.py --clang-completer --tern-completer
+  endif
+endfunction
+Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
 
 if has("nvim") 
   " in the neovim gui, use a native neovim make plugin
-  Plugin 'neomake/neomake'
+  Plug 'neomake/neomake'
 endif
 
 " gitgutter doesn't play very nicely with neovim.app
 if !has("nvim")
-  Plugin 'airblade/vim-gitgutter'
+  Plug 'airblade/vim-gitgutter'
 endif
 
-" requires server: npm install -g clausreinke/typescript-tools
-Plugin 'clausreinke/typescript-tools.vim'
+call plug#end()
 
-call vundle#end()
 filetype plugin indent on
 
 " Preferences
