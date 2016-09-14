@@ -143,6 +143,7 @@ au FileType ruby setlocal shiftwidth=2 tabstop=2 et
 
 " enable spell checking in files primarily composed of prose
 au FileType markdown setlocal spell spelllang=en_us
+au FileType rmd setlocal spell spelllang=en_us
 au FileType gitcommit setlocal spell spelllang=en_us
 
 " Shortcuts
@@ -184,6 +185,22 @@ if executable('ag')
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 endif
 
+" disable youcompleteme for file types for which it's annoying
+let g:ycm_filetype_blacklist = {
+      \ 'gitcommit': 1,
+      \ 'infolog' : 1,
+      \ 'mail' : 1,
+      \ 'markdown' : 1,
+      \ 'notes' : 1,
+      \ 'pandoc' : 1,
+      \ 'qf' : 1,
+      \ 'rmd': 1,
+      \ 'tagbar' : 1,
+      \ 'text' : 1,
+      \ 'unite' : 1,
+      \ 'vimwiki' : 1,
+\}
+ 
 " Typescript
 au BufRead,BufNewFile *.ts      setlocal filetype=typescript
 if !exists("g:ycm_semantic_triggers")
