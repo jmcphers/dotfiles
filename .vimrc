@@ -83,6 +83,7 @@ set autoread
 " set up colors appropriately
 if has('nvim')
   let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  set termguicolors
 else
   set t_Co=256
 endif
@@ -222,4 +223,8 @@ let g:UltiSnipsExpandTrigger="<c-tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-u>"
 let g:UltiSnipsJumpBackwardTrigger="<c-i>"
 let g:UltiSnipsEditSplit="vertical"
+
+" EditorConfig settings
+let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
+
 
