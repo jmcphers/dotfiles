@@ -145,12 +145,6 @@ nmap <Leader>m :Make<CR>
 " RStudio Connect
 au FileType go setlocal makeprg=make
 
-" Indent prefs by filetype
-au FileType javascript setlocal shiftwidth=2 tabstop=2 
-au FileType cpp setlocal shiftwidth=3 tabstop=3
-au FileType r setlocal shiftwidth=2 tabstop=2 et 
-au FileType ruby setlocal shiftwidth=2 tabstop=2 et 
-
 " enable spell checking in files primarily composed of prose
 au FileType markdown setlocal spell spelllang=en_us
 au FileType rmd setlocal spell spelllang=en_us
