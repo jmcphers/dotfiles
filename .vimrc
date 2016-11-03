@@ -11,7 +11,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-dispatch'
 Plug 'marijnh/tern_for_vim'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'rking/ag.vim'
+Plug 'mileszs/ack.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/syntastic'
 Plug 'junegunn/vim-easy-align'
@@ -21,6 +21,7 @@ Plug 'freitass/todo.txt-vim'
 Plug 'SirVer/ultisnips'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'shawncplus/phpcomplete.vim'
+Plug 'lyuts/vim-rtags'
 
 " TypeScript tools/server
 function! InstallTSServer(info)
@@ -137,7 +138,6 @@ nmap <C-U> :cp<CR>
 
 " RStudio
 au FileType cpp setlocal makeprg=make\ \-j4\ -C\ ~/rstudio-build
-nmap <Leader>rt :Dispatch ctags --recurse --verbose -o ~/rstudio/src/cpp/tags ~/rstudio/src/cpp<CR>
 nmap <Leader>rc :Dispatch cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -B~/rstudio-build -H~/rstudio/src/cpp<CR>
 nmap <Leader>a :Dispatch ant draft -f ~/rstudio/src/gwt/build.xml<CR>
 nmap <Leader>m :Make<CR>
@@ -152,14 +152,17 @@ au FileType gitcommit setlocal spell spelllang=en_us
 
 " Shortcuts
 map <Leader>d :YcmCompleter GoToImprecise<CR>
-map <Leader>f :Ag -U --ignore tags --ignore *.a --ignore *.min.* --ignore *.cache.js <cword><CR>
-map <Leader>s :Ag -U --ignore tags --ignore *.a --ignore *.min.* --ignore *.cache.js 
-map <Leader>p :!par w79<CR>
+map <Leader>f :Ag <cword><CR>
 map <Leader>= :EasyAlign =<CR>
 nmap <Leader>t :sp ~/Dropbox/todo.txt<CR>
 nmap <Leader>g :Ggrep <cword><CR>
 nmap <Leader>b :CtrlPBuffer<CR>
 nmap <Leader>n :noh<CR>
+
+" integrate with par if needed
+if executable('par')
+  map <Leader>p :!par w79<CR>
+endif
 
 " Go
 au FileType go nmap <Leader>i <Plug>(go-info)
@@ -220,5 +223,14 @@ let g:UltiSnipsEditSplit="vertical"
 
 " EditorConfig settings
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
+
+" if we have ag (The Silver Searcher), use it
+if executable('ag')
+  let g:ackprg = 'ag -U --vimgrep --smart-case --ignore tags'
+  cnoreabbrev ag Ack
+  cnoreabbrev aG Ack
+  cnoreabbrev Ag Ack
+  cnoreabbrev AG Ack
+endif
 
 
