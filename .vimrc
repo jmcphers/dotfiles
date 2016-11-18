@@ -123,8 +123,8 @@ if has("win32") || has("win16")
   let g:airline_powerline_fonts = 0
   set 
 else
-  set gfn=Sauce\ Code\ Powerline\ Light:h11
-  let g:airline_powerline_fonts = 1
+"   set gfn=Sauce\ Code\ Powerline\ Light:h11
+" let g:airline_powerline_fonts = 1
 endif
 
 " Speedy shortcuts
