@@ -216,7 +216,7 @@ endif
 let g:ycm_semantic_triggers['typescript'] = ['.']
 
 " UltiSnips configuration settings
-let g:UltiSnipsExpandTrigger="<c-tab>"
+let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-u>"
 let g:UltiSnipsJumpBackwardTrigger="<c-i>"
 let g:UltiSnipsEditSplit="vertical"
@@ -233,4 +233,13 @@ if executable('ag')
   cnoreabbrev AG Ack
 endif
 
+" without this setting, ctrl-p matches inside directory names (toggle with
+" <C-D>)
+let g:ctrlp_by_filename = 1
+
+" enable live, in-place feedback when doing substitutions (supported by
+" neovim)
+if exists('&inccommand') 
+  set inccommand=nosplit
+endif
 
