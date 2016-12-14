@@ -18,11 +18,14 @@ Plug 'junegunn/vim-easy-align'
 Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'leafgarland/typescript-vim'
 Plug 'freitass/todo.txt-vim'
-Plug 'SirVer/ultisnips'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'shawncplus/phpcomplete.vim', { 'for': 'php' }
 Plug 'lyuts/vim-rtags'
 Plug 'vimwiki/vimwiki'
+
+if has("python")
+  Plug 'SirVer/ultisnips'
+endif
 
 " TypeScript tools/server
 function! InstallTSServer(info)
@@ -39,7 +42,9 @@ function! BuildYCM(info)
     !./install.py --clang-completer --tern-completer
   endif
 endfunction
-Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
+if has("python")
+  Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
+endif
 
 if has("nvim") 
   " in the neovim gui, use a native neovim make plugin
@@ -242,5 +247,11 @@ let g:ctrlp_by_filename = 1
 " neovim)
 if exists('&inccommand') 
   set inccommand=nosplit
+endif
+
+" sync vimwiki with dropbox directly on Windows (since we can't symlink
+" there)
+if has("win32")
+  let g:vimwiki_list = [ { 'path': '~\Dropbox\vimwiki' } ]
 endif
 
