@@ -15,13 +15,14 @@ Plug 'mileszs/ack.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/syntastic'
 Plug 'junegunn/vim-easy-align'
-Plug 'fatih/vim-go'
+Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'leafgarland/typescript-vim'
 Plug 'freitass/todo.txt-vim'
 Plug 'SirVer/ultisnips'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'shawncplus/phpcomplete.vim'
+Plug 'shawncplus/phpcomplete.vim', { 'for': 'php' }
 Plug 'lyuts/vim-rtags'
+Plug 'vimwiki/vimwiki'
 
 " TypeScript tools/server
 function! InstallTSServer(info)
