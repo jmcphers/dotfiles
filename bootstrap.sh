@@ -21,6 +21,7 @@ ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
 ln -s ~/dotfiles/.todo.cfg ~/.todo.cfg
 ln -s ~/dotfiles/UltiSnips ~/.vim/UltiSnips
 ln -s ~/dotfiles/.muttrc ~/.muttrc
+ln -s ~/dotfiles/.tmuxinator ~/.tmuxinator
 
 # use same vimrc for neovim and regular vim (TODO: this is unix-only)
 mkdir -p ~/.config/nvim

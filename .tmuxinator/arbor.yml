@@ -1,0 +1,19 @@
+
+name: arbor
+root: ~/git/arbor-web
+
+windows:
+  - server:
+      layout: main-vertical
+      panes:
+        - server
+            - cd site
+            - hugo server --theme=arbor
+        - git 
+            - git status
+  - editor: 
+    - cd site
+    - nvim
+
+
+

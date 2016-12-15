@@ -1,0 +1,22 @@
+
+name: rstudio
+root: ~/rstudio
+
+windows: 
+  - server:
+      layout: even-vertical
+      panes:
+        - server:
+          - cd ~/rstudio-build
+          - ./rserver-dev
+        - gwt:
+          - cd src/gwt 
+          - ant devmode
+  - editor:
+    - cd src/cpp
+    - nvim
+  - git:
+    - cd src
+    - git status
+  - scratch
+
