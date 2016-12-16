@@ -165,6 +165,15 @@ nmap <Leader>g :Ggrep <cword><CR>
 nmap <Leader>b :CtrlPBuffer<CR>
 nmap <Leader>n :noh<CR>
 
+" browse for a wiki page by name
+nmap <Leader>wp :CtrlP ~/Dropbox/vimwiki/<CR>
+
+" log current line as an entry to idonethis
+function LogDone()
+  execute "!rvm 2.3.3 do idt entry new" shellescape(getline("."))
+endfunction
+nmap <Leader>idt :call LogDone()<CR>
+
 " integrate with par if needed
 if executable('par')
   map <Leader>p :!par w79<CR>
