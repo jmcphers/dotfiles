@@ -4,7 +4,7 @@ root: ~/rstudio
 
 windows: 
   - server:
-      layout: even-vertical
+      layout: even-horizontal
       panes:
         - server:
           - cd ~/rstudio-build
@@ -18,5 +18,5 @@ windows:
   - git:
     - cd src
     - git status
-  - scratch
+  - scratch:
 

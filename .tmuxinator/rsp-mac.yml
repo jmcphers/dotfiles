@@ -1,0 +1,20 @@
+
+name: rsp-mac
+root: ~/rstudio-pro
+
+windows: 
+  - server:
+      layout: even-vertical
+      panes:
+        - server:
+          - vagrant up primary
+          - vagrant ssh
+        - scratch:
+  - editor:
+    - cd src/cpp
+    - nvim
+  - git:
+    - cd src
+    - git status
+  - scratch: 
+

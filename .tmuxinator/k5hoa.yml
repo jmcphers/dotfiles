@@ -1,0 +1,16 @@
+
+name: k5hoa
+root: ~/git/k5hoa
+
+windows:
+  - server:
+      layout: even-horizontal
+      panes:
+        - server:
+            - hugo server --theme=sunblind
+        - git:
+            - git status
+  - editor: nvim
+
+
+

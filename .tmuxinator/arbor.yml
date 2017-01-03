@@ -4,12 +4,12 @@ root: ~/git/arbor-web
 
 windows:
   - server:
-      layout: main-vertical
+      layout: even-horizontal
       panes:
-        - server
+        - server:
             - cd site
             - hugo server --theme=arbor
-        - git 
+        - git:
             - git status
   - editor: 
     - cd site
