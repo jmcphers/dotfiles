@@ -27,6 +27,10 @@ if has("python")
   Plug 'SirVer/ultisnips'
 endif
 
+if has("nvim") 
+  Plug 'radenling/vim-dispatch-neovim'
+endif
+
 " TypeScript tools/server
 function! InstallTSServer(info)
   if a:info.status == 'installed' || a:info.force
@@ -155,6 +159,7 @@ au FileType go setlocal makeprg=make
 au FileType markdown setlocal spell spelllang=en_us
 au FileType rmd setlocal spell spelllang=en_us
 au FileType gitcommit setlocal spell spelllang=en_us
+au FileType vimwiki setlocal spell spelllang=en_us
 
 " Shortcuts
 map <Leader>d :YcmCompleter GoToImprecise<CR>
@@ -167,6 +172,13 @@ nmap <Leader>n :noh<CR>
 
 " browse for a wiki page by name
 nmap <Leader>wp :CtrlP ~/Dropbox/vimwiki/<CR>
+
+" search the wiki
+function VimwikiSearch(str) 
+  execute ":Ack " a:str " ~/Dropbox/vimwiki"
+endfunction
+nmap <Leader>wf :call VimwikiSearch("")<Left><Left>
+
 
 " log current line as an entry to idonethis
 function LogDone()
