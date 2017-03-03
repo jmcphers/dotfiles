@@ -27,6 +27,10 @@ ln -s ~/dotfiles/.tmuxinator ~/.tmuxinator
 mkdir -p ~/.config/nvim
 ln -s ~/dotfiles/.vimrc ~/.config/nvim/init.vim
 
+# set up personal bin folder 
+mkdir -p ~/bin
+ln -s ~/dotfiles/bin/* ~/bin
+
 # create vim swapfile targets -- this keeps directories tidy
 mkdir -p ~/.vimbackup
 mkdir -p ~/.vimswap

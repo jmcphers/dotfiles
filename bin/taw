@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+todo.sh -t -d ~/dotfiles/.todo.cfg add $@
+
