@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+sudo killall AppleCameraAssistant
+sudo killall VDCAssistant
