@@ -233,6 +233,7 @@ let g:ycm_filetype_blacklist = {
       \ 'text' : 1,
       \ 'unite' : 1,
       \ 'vimwiki' : 1,
+      \ 'todo' : 1,
 \}
  
 " Typescript
