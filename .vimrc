@@ -182,7 +182,7 @@ nmap <Leader>wf :call VimwikiSearch("")<Left><Left>
 
 " log current line as an entry to idonethis
 function LogDone()
-  execute "!rvm 2.3.3 do idt entry new" shellescape(getline("."))
+  echo system('rvm 2.3.3 do idt entry new ' . shellescape(getline(".")))
 endfunction
 nmap <Leader>idt :call LogDone()<CR>
 
@@ -276,4 +276,5 @@ endif
 if has("win32")
   let g:vimwiki_list = [ { 'path': '~\Dropbox\vimwiki' } ]
 endif
+
 
