@@ -77,7 +77,7 @@ set hls
 set incsearch
 set laststatus=2
 set encoding=utf-8
-set colorcolumn=80
+set colorcolumn=100
 set smarttab
 set showcmd
 let mapleader = ","
