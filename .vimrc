@@ -77,7 +77,6 @@ set hls
 set incsearch
 set laststatus=2
 set encoding=utf-8
-set colorcolumn=100
 set smarttab
 set showcmd
 let mapleader = ","
@@ -277,4 +276,8 @@ if has("win32")
   let g:vimwiki_list = [ { 'path': '~\Dropbox\vimwiki' } ]
 endif
 
+" add margin/column guides for common code file types
+au FileType cpp setlocal colorcolumn=100
+au FileType java setlocal colorcolumn=100
+au FileType javascript setlocal colorcolumn=100
 
