@@ -79,7 +79,7 @@ set laststatus=2
 set encoding=utf-8
 set smarttab
 set showcmd
-let mapleader = ","
+let mapleader = " "
 set nocompatible
 set cursorline
 set bs=2
@@ -221,18 +221,18 @@ endif
 " disable youcompleteme for file types for which it's annoying
 let g:ycm_filetype_blacklist = {
       \ 'gitcommit': 1,
-      \ 'infolog' : 1,
-      \ 'mail' : 1,
-      \ 'markdown' : 1,
-      \ 'notes' : 1,
-      \ 'pandoc' : 1,
-      \ 'qf' : 1,
-      \ 'rmd': 1,
-      \ 'tagbar' : 1,
-      \ 'text' : 1,
-      \ 'unite' : 1,
-      \ 'vimwiki' : 1,
-      \ 'todo' : 1,
+      \ 'infolog':   1,
+      \ 'mail':      1,
+      \ 'markdown':  1,
+      \ 'notes':     1,
+      \ 'pandoc':    1,
+      \ 'qf':        1,
+      \ 'rmd':       1,
+      \ 'tagbar':    1,
+      \ 'text':      1,
+      \ 'unite':     1,
+      \ 'vimwiki':   1,
+      \ 'todo':      1,
 \}
  
 " Typescript
@@ -280,4 +280,5 @@ endif
 au FileType cpp setlocal colorcolumn=100
 au FileType java setlocal colorcolumn=100
 au FileType javascript setlocal colorcolumn=100
+au FileType r setlocal colorcolumn=100
 
