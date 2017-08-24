@@ -178,10 +178,9 @@ function VimwikiSearch(str)
 endfunction
 nmap <Leader>wf :call VimwikiSearch("")<Left><Left>
 
-
 " log current line as an entry to idonethis
 function LogDone()
-  echo system('rvm 2.3.3 do idt entry new ' . shellescape(getline(".")))
+  echo system('achiever-cli --description ' . shellescape(getline(".")))
 endfunction
 nmap <Leader>idt :call LogDone()<CR>
 
