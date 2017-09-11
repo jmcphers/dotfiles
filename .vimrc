@@ -22,6 +22,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'shawncplus/phpcomplete.vim', { 'for': 'php' }
 Plug 'lyuts/vim-rtags'
 Plug 'vimwiki/vimwiki'
+Plug 'flazz/vim-colorschemes'
 
 if has("python")
   Plug 'SirVer/ultisnips'
