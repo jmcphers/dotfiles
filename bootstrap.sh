@@ -32,6 +32,7 @@ mkdir -p ~/bin
 ln -s ~/dotfiles/bin/* ~/bin
 
 # create vim swapfile targets -- this keeps directories tidy
-mkdir -p ~/.vimbackup
-mkdir -p ~/.vimswap
+mkdir -p ~/.vim/backup
+mkdir -p ~/.vim/swap
+mkdir -p ~/.vim/undo
 

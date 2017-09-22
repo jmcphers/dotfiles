@@ -71,8 +71,6 @@ set wmh=0
 set ts=4
 set sw=4
 set et
-set backupdir=~/.vimbackup
-set directory=~/.vimswap
 set hls
 set incsearch
 set laststatus=2
@@ -89,6 +87,12 @@ set ruler
 set wildmenu
 set display+=lastline
 set autoread
+
+" Don't clutter local dirs, but keep backup/swap/undo files
+set backupdir=~/.vim/backup
+set directory=~/.vim/swap
+set undodir=~/.vim/undo
+set undofile
 
 " set up colors appropriately
 if has('nvim')
@@ -229,9 +233,10 @@ let g:ycm_filetype_blacklist = {
       \ 'rmd':       1,
       \ 'tagbar':    1,
       \ 'text':      1,
-      \ 'unite':     1,
-      \ 'vimwiki':   1,
       \ 'todo':      1,
+      \ 'unite':     1,
+      \ 'vim':       1,
+      \ 'vimwiki':   1,
 \}
  
 " Typescript
