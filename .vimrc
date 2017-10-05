@@ -91,6 +91,9 @@ set autoread
 " use gnu global to provide tags
 set cscopetag
 set cscopeprg=gtags-cscope
+" TODO: it's still currently necessary to do "cs add GTAGS" in order to get
+" tag-jumping to work via ^] and friends. add some code to figure out the
+" project root and add the GTAGS file as appropriate.
 
 " Don't clutter local dirs, but keep backup/swap/undo files
 set backupdir=~/.vim/backup
