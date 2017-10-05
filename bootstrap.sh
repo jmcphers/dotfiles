@@ -27,12 +27,18 @@ ln -s ~/dotfiles/.tmuxinator ~/.tmuxinator
 mkdir -p ~/.config/nvim
 ln -s ~/dotfiles/.vimrc ~/.config/nvim/init.vim
 
-# set up personal bin folder 
-mkdir -p ~/bin
-ln -s ~/dotfiles/bin/* ~/bin
-
 # create vim swapfile targets -- this keeps directories tidy
 mkdir -p ~/.vim/backup
 mkdir -p ~/.vim/swap
 mkdir -p ~/.vim/undo
+
+# make "git gtags" work
+git config --global alias.gtags '!.git/hooks/gtags'
+
+# set up git template folder and init with gtags
+GIT_TEMPLATE="~/.config/git/template"
+mkdir -p $GIT_TEMPLATE/hooks
+git config --global init.templatedir "$GIT_TEMPLATE"
+~/dotfiles/bin/setup-git-gtags $GIT_TEMPLATE
+
 

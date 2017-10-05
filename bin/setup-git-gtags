@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+# adapted from advice at https://csl.name/post/gtags/
+
+# figure out where we are
+DOTBIN="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+# install to .git by default
+DEST="$1"
+if [[ -z "$DEST" ]]; then 
+    DEST=./.git
+fi
+
+if [[ -f "$DEST/hooks/gtags" ]]; then
+  echo "Repository appears to be configured with gtags already."
+  exit 0
+fi
+
+# add gtags hook
+ln -s $DOTBIN/gtags/git-gtags $DEST/hooks/gtags
+
+# hook various actions
+ln -s $DOTBIN/gtags/git-hook $DEST/hooks/post-commit
+ln -s $DOTBIN/gtags/git-hook $DEST/hooks/post-merge
+ln -s $DOTBIN/gtags/git-hook $DEST/hooks/post-checkout
+ln -s $DOTBIN/gtags/git-hook-rewrite $DEST/hooks/post-rewrite
+
+

@@ -20,15 +20,15 @@ Plug 'leafgarland/typescript-vim'
 Plug 'freitass/todo.txt-vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'shawncplus/phpcomplete.vim', { 'for': 'php' }
-Plug 'lyuts/vim-rtags'
 Plug 'vimwiki/vimwiki'
-
-if has("python")
-  Plug 'SirVer/ultisnips'
-endif
+Plug 'vim-scripts/gtags.vim'
 
 if has("nvim") 
+  " neovim-specific plugins
   Plug 'radenling/vim-dispatch-neovim'
+elseif has ("python")
+  " currently busted against neovim
+  Plug 'SirVer/ultisnips'
 endif
 
 " TypeScript tools/server
@@ -87,6 +87,10 @@ set ruler
 set wildmenu
 set display+=lastline
 set autoread
+
+" use gnu global to provide tags
+set cscopetag
+set cscopeprg=gtags-cscope
 
 " Don't clutter local dirs, but keep backup/swap/undo files
 set backupdir=~/.vim/backup
@@ -169,7 +173,8 @@ map <Leader>d :YcmCompleter GoToImprecise<CR>
 map <Leader>f :Ag <cword><CR>
 map <Leader>= :EasyAlign =<CR>
 nmap <Leader>t :sp ~/Dropbox/todo.txt<CR>
-nmap <Leader>g :Ggrep <cword><CR>
+nmap <Leader>G :Ggrep <cword><CR>
+nmap <Leader>g :GtagsCursor<CR>
 nmap <Leader>b :CtrlPBuffer<CR>
 nmap <Leader>n :noh<CR>
 
