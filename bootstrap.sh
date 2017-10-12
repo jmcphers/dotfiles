@@ -23,9 +23,13 @@ ln -s ~/dotfiles/UltiSnips ~/.vim/UltiSnips
 ln -s ~/dotfiles/.muttrc ~/.muttrc
 ln -s ~/dotfiles/.tmuxinator ~/.tmuxinator
 
-# use same vimrc for neovim and regular vim (TODO: this is unix-only)
-mkdir -p ~/.config/nvim
-ln -s ~/dotfiles/.vimrc ~/.config/nvim/init.vim
+# use same vimrc for neovim and regular vim
+if [[ "$OSTYPE" == "msys" ]]; then
+    ln -s ~/dotfiles/init-windows.vim ~/AppData/Local/nvim/init.vim
+else
+    mkdir -p ~/.config/nvim
+    ln -s ~/dotfiles/init.vim ~/.config/nvim/init.vim
+fi
 
 # create vim swapfile targets -- this keeps directories tidy
 mkdir -p ~/.vim/backup

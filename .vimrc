@@ -22,6 +22,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'shawncplus/phpcomplete.vim', { 'for': 'php' }
 Plug 'vimwiki/vimwiki'
 Plug 'vim-scripts/gtags.vim'
+Plug 'flazz/vim-colorschemes'
 
 if has("nvim") 
   " neovim-specific plugins
@@ -132,7 +133,7 @@ syn on
 let g:solarized_termcolors=256
 let g:solarized_italic=0
 set background=light
-colors solarized
+silent! colorscheme solarized
 
 set guioptions-=m  " disable GUI menubar
 set guioptions-=r  " disable GUI scrollbar
@@ -141,7 +142,6 @@ set guioptions-=T  " disable GUI toolbar
 if has("win32") || has("win16")
   set gfn=Consolas:h9:cANSI 
   let g:airline_powerline_fonts = 0
-  set 
 else
 "   set gfn=Sauce\ Code\ Powerline\ Light:h11
 " let g:airline_powerline_fonts = 1
