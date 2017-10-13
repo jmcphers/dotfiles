@@ -22,6 +22,8 @@ ln -s ~/dotfiles/.todo.cfg ~/.todo.cfg
 ln -s ~/dotfiles/UltiSnips ~/.vim/UltiSnips
 ln -s ~/dotfiles/.muttrc ~/.muttrc
 ln -s ~/dotfiles/.tmuxinator ~/.tmuxinator
+ln -s ~/dotfiles/.zpreztorc ~/.zpreztorc
+ln -s ~/dotfiles/.zshrc ~/.zshrc
 
 # use same vimrc for neovim and regular vim
 if [[ "$OSTYPE" == "msys" ]]; then

@@ -1,0 +1,19 @@
+
+zstyle ':prezto:load' pmodule \
+  'environment' \
+  'terminal' \
+  'editor' \
+  'history' \
+  'directory' \
+  'spectrum' \
+  'utility' \
+  'completion' \
+  'prompt' \
+  'fasd' \
+  'tmux' \
+  'ruby'
+
+zstyle ':prezto:module:editor' key-bindings 'emacs'
+zstyle ':prezto:module:prompt' theme 'pure'
+zstyle ':prezto:module:terminal' auto-title 'yes'
+
