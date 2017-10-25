@@ -20,16 +20,16 @@ Plug 'leafgarland/typescript-vim'
 Plug 'freitass/todo.txt-vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'shawncplus/phpcomplete.vim', { 'for': 'php' }
-Plug 'lyuts/vim-rtags'
 Plug 'vimwiki/vimwiki'
+Plug 'vim-scripts/gtags.vim'
 Plug 'flazz/vim-colorschemes'
 
-if has("python")
-  Plug 'SirVer/ultisnips'
-endif
-
 if has("nvim") 
+  " neovim-specific plugins
   Plug 'radenling/vim-dispatch-neovim'
+elseif has ("python")
+  " currently busted against neovim
+  Plug 'SirVer/ultisnips'
 endif
 
 " TypeScript tools/server
@@ -72,8 +72,6 @@ set wmh=0
 set ts=4
 set sw=4
 set et
-set backupdir=~/.vimbackup
-set directory=~/.vimswap
 set hls
 set incsearch
 set laststatus=2
@@ -90,6 +88,19 @@ set ruler
 set wildmenu
 set display+=lastline
 set autoread
+
+" use gnu global to provide tags
+set cscopetag
+set cscopeprg=gtags-cscope
+" TODO: it's still currently necessary to do "cs add GTAGS" in order to get
+" tag-jumping to work via ^] and friends. add some code to figure out the
+" project root and add the GTAGS file as appropriate.
+
+" Don't clutter local dirs, but keep backup/swap/undo files
+set backupdir=~/.vim/backup
+set directory=~/.vim/swap
+set undodir=~/.vim/undo
+set undofile
 
 " set up colors appropriately
 if has('nvim')
@@ -122,7 +133,7 @@ syn on
 let g:solarized_termcolors=256
 let g:solarized_italic=0
 set background=light
-colors solarized
+silent! colorscheme solarized
 
 set guioptions-=m  " disable GUI menubar
 set guioptions-=r  " disable GUI scrollbar
@@ -131,7 +142,6 @@ set guioptions-=T  " disable GUI toolbar
 if has("win32") || has("win16")
   set gfn=Consolas:h9:cANSI 
   let g:airline_powerline_fonts = 0
-  set 
 else
 "   set gfn=Sauce\ Code\ Powerline\ Light:h11
 " let g:airline_powerline_fonts = 1
@@ -166,7 +176,8 @@ map <Leader>d :YcmCompleter GoToImprecise<CR>
 map <Leader>f :Ag <cword><CR>
 map <Leader>= :EasyAlign =<CR>
 nmap <Leader>t :sp ~/Dropbox/todo.txt<CR>
-nmap <Leader>g :Ggrep <cword><CR>
+nmap <Leader>G :Ggrep <cword><CR>
+nmap <Leader>g :GtagsCursor<CR>
 nmap <Leader>b :CtrlPBuffer<CR>
 nmap <Leader>n :noh<CR>
 
@@ -230,9 +241,10 @@ let g:ycm_filetype_blacklist = {
       \ 'rmd':       1,
       \ 'tagbar':    1,
       \ 'text':      1,
-      \ 'unite':     1,
-      \ 'vimwiki':   1,
       \ 'todo':      1,
+      \ 'unite':     1,
+      \ 'vim':       1,
+      \ 'vimwiki':   1,
 \}
  
 " Typescript

@@ -1,0 +1,14 @@
+#! /bin/sh
+set -e
+dir="`git rev-parse --git-dir`"
+trap 'rm -f "$dir/$$.gtags"' EXIT
+mkdir "$dir/$$.gtags"
+
+# I've found that it's best to use the native parser for the things it can
+# parse, and then delegate to ctags for the rest. To do this, add a command
+# like this to your gtags.conf (see "man gtags.conf")
+# all:\
+#     :tc=native:tc=exuberant-ctags:
+git ls-files | \
+    gtags --file=- --skip-unreadable --gtagslabel=all "$dir/$$.gtags"
+mv $dir/$$.gtags/* "$dir/.."
