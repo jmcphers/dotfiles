@@ -15,22 +15,19 @@ curl -fLo $VIMRT/autoload/plug.vim --create-dirs https://raw.githubusercontent.c
 # install tmux plugin manager
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
-# link dotfiles
-ln -s ~/dotfiles/.vimrc $VIMRC
-ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
-ln -s ~/dotfiles/.todo.cfg ~/.todo.cfg
-ln -s ~/dotfiles/UltiSnips ~/.vim/UltiSnips
-ln -s ~/dotfiles/.muttrc ~/.muttrc
-ln -s ~/dotfiles/.tmuxinator ~/.tmuxinator
-ln -s ~/dotfiles/.zpreztorc ~/.zpreztorc
-ln -s ~/dotfiles/.zshrc ~/.zshrc
+# use stow to set up symlinks
+stow todo.txt
+stow tmux
+stow zsh
+stow mutt
+stow vim
 
 # use same vimrc for neovim and regular vim
 if [[ "$OSTYPE" == "msys" ]]; then
+    ln -s ~/dotfiles/vim/.vimrc $VIMRC
     ln -s ~/dotfiles/init-windows.vim ~/AppData/Local/nvim/init.vim
 else
-    mkdir -p ~/.config/nvim
-    ln -s ~/dotfiles/init.vim ~/.config/nvim/init.vim
+    stow neovim
 fi
 
 # create vim swapfile targets -- this keeps directories tidy
