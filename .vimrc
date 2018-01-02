@@ -23,6 +23,7 @@ Plug 'shawncplus/phpcomplete.vim', { 'for': 'php' }
 Plug 'vimwiki/vimwiki'
 Plug 'vim-scripts/gtags.vim'
 Plug 'flazz/vim-colorschemes'
+Plug 'jalvesaq/vimcmdline'
 
 if has("nvim") 
   " neovim-specific plugins
