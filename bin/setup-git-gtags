@@ -16,6 +16,9 @@ if [[ -f "$DEST/hooks/gtags" ]]; then
   exit 0
 fi
 
+# ensure we have a git hooks directory
+mkdir -p $DEST/hooks
+
 # add gtags hook
 ln -s $DOTBIN/gtags/git-gtags $DEST/hooks/gtags
 
