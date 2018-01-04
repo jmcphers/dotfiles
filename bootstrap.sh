@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # set up git identity
 git config --global user.email "jonathan@rstudio.com"
 git config --global user.name "Jonathan McPherson"
