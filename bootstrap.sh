@@ -9,6 +9,10 @@ VIMRC=~/.vimrc
 if [[ "$OSTYPE" == "msys" ]]; then
     VIMRT=~/vimfiles
     VIMRC=~/_vimrc
+
+    # install vim-plug for neovim
+    mkdir -p ~/AppData/Local/nvim/autoload
+    curl -o ~/AppData/Local/nvim/autoload/plug.vim https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
 
 # install vim-plug
@@ -17,19 +21,18 @@ curl -fLo $VIMRT/autoload/plug.vim --create-dirs https://raw.githubusercontent.c
 # install tmux plugin manager
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
-# use stow to set up symlinks
-stow todo.txt
-stow tmux
-stow zsh
-stow mutt
-stow vim
-
-# use same vimrc for neovim and regular vim
 if [[ "$OSTYPE" == "msys" ]]; then
+    # use same vimrc for neovim and regular vim
     ln -s ~/dotfiles/vim/.vimrc $VIMRC
     ln -s ~/dotfiles/init-windows.vim ~/AppData/Local/nvim/init.vim
 else
+    # use stow to set up symlinks
     stow neovim
+    stow todo.txt
+    stow tmux
+    stow zsh
+    stow mutt
+    stow vim
 fi
 
 # create vim swapfile targets -- this keeps directories tidy
