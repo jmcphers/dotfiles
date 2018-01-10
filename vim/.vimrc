@@ -9,6 +9,7 @@ Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-vinegar'
 Plug 'marijnh/tern_for_vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mileszs/ack.vim'
@@ -131,10 +132,10 @@ if has("patch711")
 endif
 
 syn on
+
+" setup for solarized colorscheme
 let g:solarized_termcolors=256
 let g:solarized_italic=0
-set background=light
-silent! colorscheme solarized
 
 set guioptions-=m  " disable GUI menubar
 set guioptions-=r  " disable GUI scrollbar
