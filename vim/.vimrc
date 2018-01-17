@@ -63,6 +63,11 @@ if !has("nvim")
   Plug 'airblade/vim-gitgutter'
 endif
 
+" this plugin adds github magic; it requires a personal access token w/ repo 
+" permissions. add a line to ~/.netrc as follows:
+" machine api.githup.com login <user> password <token>
+Plug 'tpope/vim-rhubarb'
+
 call plug#end()
 
 filetype plugin indent on
