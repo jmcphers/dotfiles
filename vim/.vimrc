@@ -25,6 +25,8 @@ Plug 'vimwiki/vimwiki'
 Plug 'vim-scripts/gtags.vim'
 Plug 'flazz/vim-colorschemes'
 Plug 'jalvesaq/vimcmdline'
+Plug 'mbbill/undotree'
+Plug 'machakann/vim-highlightedyank'
 
 if has("nvim") 
   " neovim-specific plugins
