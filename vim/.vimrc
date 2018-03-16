@@ -14,7 +14,6 @@ Plug 'marijnh/tern_for_vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mileszs/ack.vim'
 Plug 'scrooloose/nerdcommenter'
-Plug 'scrooloose/syntastic'
 Plug 'junegunn/vim-easy-align'
 Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'leafgarland/typescript-vim'
@@ -27,6 +26,7 @@ Plug 'flazz/vim-colorschemes'
 Plug 'jalvesaq/vimcmdline'
 Plug 'mbbill/undotree'
 Plug 'machakann/vim-highlightedyank'
+Plug 'w0rp/ale'
 
 if has("nvim") 
   " neovim-specific plugins
@@ -53,11 +53,6 @@ function! BuildYCM(info)
 endfunction
 if has("python")
   Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
-endif
-
-if has("nvim") 
-  " in the neovim gui, use a native neovim make plugin
-  Plug 'neomake/neomake'
 endif
 
 " gitgutter doesn't play very nicely with neovim.app
