@@ -185,7 +185,7 @@ nmap <Leader>G :Ggrep <cword><CR>
 nmap <Leader>g :GtagsCursor<CR>
 nmap <Leader>b :CtrlPBuffer<CR>
 nmap <Leader>n :noh<CR>
-nmap zz :update<CR>
+nmap <Leader>s :update<CR>
 
 " browse for a wiki page by name
 nmap <Leader>wp :CtrlP ~/Dropbox/vimwiki/<CR>
