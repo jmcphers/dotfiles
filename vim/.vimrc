@@ -27,6 +27,7 @@ Plug 'jalvesaq/vimcmdline'
 Plug 'mbbill/undotree'
 Plug 'machakann/vim-highlightedyank'
 Plug 'w0rp/ale'
+Plug 'Olical/vim-enmasse'
 
 if has("nvim") 
   " neovim-specific plugins
