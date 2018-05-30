@@ -43,6 +43,7 @@ else
     stow zsh
     stow mutt
     stow vim
+    stow vrapper
 fi
 
 # create vim swapfile targets -- this keeps directories tidy
