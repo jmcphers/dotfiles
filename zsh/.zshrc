@@ -25,6 +25,6 @@ else
     export VISUAL=vim
     export EDITOR=vim
 fi
-export PATH=$PATH:~/bin
+export PATH=$PATH:~/bin:~/dotfiles/bin
 export GOPATH=~
 
