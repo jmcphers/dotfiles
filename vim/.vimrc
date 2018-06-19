@@ -11,7 +11,6 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-vinegar'
 Plug 'marijnh/tern_for_vim'
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mileszs/ack.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'junegunn/vim-easy-align'
@@ -26,15 +25,22 @@ Plug 'flazz/vim-colorschemes'
 Plug 'jalvesaq/vimcmdline'
 Plug 'mbbill/undotree'
 Plug 'machakann/vim-highlightedyank'
-Plug 'w0rp/ale'
 Plug 'Olical/vim-enmasse'
+Plug 'ctrlpvim/ctrlp.vim'
 
 if has("nvim") 
   " neovim-specific plugins
   Plug 'radenling/vim-dispatch-neovim'
+  Plug 'w0rp/ale'
 elseif has ("python")
   " currently busted against neovim
   Plug 'SirVer/ultisnips'
+endif
+
+if !has("gui_running")
+  " use fzf in the terminal
+  Plug '/usr/local/opt/fzf'
+  Plug 'junegunn/fzf.vim'
 endif
 
 " TypeScript tools/server
@@ -115,7 +121,6 @@ else
   set t_Co=256
 endif
 
-
 " don't treat numbers with leading 0 as octal
 set nrformats-=octal
 
@@ -156,15 +161,10 @@ endif
 
 map <C-J> <C-W>j<C-W>_
 map <C-K> <C-W>k<C-W>_
-imap <C-I> <ESC>:cn<CR>
-imap <C-U> <ESC>:cp<CR>
-nmap <C-I> :cn<CR>
-nmap <C-U> :cp<CR>
 
 " RStudio
 au FileType cpp setlocal makeprg=make\ \-j4\ -C\ ~/rstudio-build
 nmap <Leader>rc :Dispatch cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -B~/rstudio-build -H~/rstudio/src/cpp<CR>
-nmap <Leader>a :Dispatch ant draft -f ~/rstudio/src/gwt/build.xml<CR>
 nmap <Leader>m :Make<CR>
 
 " RStudio Connect
@@ -183,16 +183,27 @@ map <Leader>= :EasyAlign =<CR>
 nmap <Leader>t :sp ~/Dropbox/todo.txt<CR>
 nmap <Leader>G :Ggrep <cword><CR>
 nmap <Leader>g :GtagsCursor<CR>
-nmap <Leader>b :CtrlPBuffer<CR>
 nmap <Leader>n :noh<CR>
 nmap <Leader>s :update<CR>
 
-" browse for a wiki page by name
-nmap <Leader>wp :CtrlP ~/Dropbox/vimwiki/<CR>
+if has("gui_running")
+  " use ctrl-p as a fuzzy finder in gui mode
+  let g:ctrlp_map = '<c-p>'
+  nmap <Leader>b :CtrlPBuffer<CR>
+  nmap <Leader>wp :CtrlP ~/git/vimwiki/<CR>
+else
+  " otherwise, use fzf
+  nmap <c-p> :Files<CR> 
+  nmap <Leader>a :Marks<CR>
+  nmap <Leader>o :GFiles<CR>
+  nmap <Leader>i :GFiles?<CR>
+  nmap <Leader>b :CtrlPBuffer<CR>
+  nmap <Leader>wp :Files ~/git/vimwiki/<CR>
+endif
 
 " search the wiki
 function VimwikiSearch(str) 
-  execute ":Ack " a:str " ~/Dropbox/vimwiki"
+  execute ":Ack " a:str " ~/git/vimwiki"
 endfunction
 nmap <Leader>wf :call VimwikiSearch("")<Left><Left>
 
@@ -291,7 +302,7 @@ endif
 " sync vimwiki with dropbox directly on Windows (since we can't symlink
 " there)
 if has("win32")
-  let g:vimwiki_list = [ { 'path': '~\Dropbox\vimwiki' } ]
+  let g:vimwiki_list = [ { 'path': '~\git\vimwiki' } ]
 endif
 
 " add margin/column guides for common code file types
