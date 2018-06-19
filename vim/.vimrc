@@ -32,8 +32,9 @@ if has("nvim")
   " neovim-specific plugins
   Plug 'radenling/vim-dispatch-neovim'
   Plug 'w0rp/ale'
-elseif has ("python")
-  " currently busted against neovim
+endif
+
+if has("python")
   Plug 'SirVer/ultisnips'
 endif
 
@@ -117,6 +118,7 @@ set undofile
 if has('nvim')
   let $NVIM_TUI_ENABLE_TRUE_COLOR=1
   set termguicolors
+  colors onedark
 else
   set t_Co=256
 endif
