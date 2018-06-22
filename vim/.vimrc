@@ -14,6 +14,7 @@ Plug 'marijnh/tern_for_vim'
 Plug 'mileszs/ack.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'junegunn/vim-easy-align'
+Plug 'junegunn/goyo.vim'
 Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'leafgarland/typescript-vim'
 Plug 'freitass/todo.txt-vim'
