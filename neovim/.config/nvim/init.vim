@@ -30,11 +30,13 @@ Plug 'Olical/vim-enmasse'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'radenling/vim-dispatch-neovim'
 Plug 'w0rp/ale'
+Plug 'junegunn/fzf.vim'
 
 " use fzf if already installed
 if isdirectory("/usr/local/opt/fzf")
   Plug '/usr/local/opt/fzf'
-  Plug 'junegunn/fzf.vim'
+elseif isdirectory(expand("~/.fzf"))
+  Plug '~/.fzf'
 endif
 
 if has("python")
@@ -53,7 +55,7 @@ Plug 'clausreinke/typescript-tools.vim', { 'do': function('InstallTSServer') }
 " YouCompleteMe requires compilation after install
 function! BuildYCM(info)
   if a:info.status == 'installed' || a:info.force
-    !./install.py --clang-completer --tern-completer
+    !./install.py --clang-completer --js-completer --java-completer
   endif
 endfunction
 if has("python")
@@ -133,7 +135,7 @@ endif
 
 " RStudio
 au FileType cpp setlocal makeprg=make\ \-j4\ -C\ ~/rstudio-build
-nmap <Leader>rc :Dispatch cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -B~/rstudio-build -H~/rstudio/src/cpp<CR>
+nmap <Leader>rc :Dispatch cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -B~/rstudio-pro-build -H~/rstudio-pro/src/cpp<CR>
 nmap <Leader>m :Make<CR>
 
 " RStudio Connect
@@ -157,7 +159,7 @@ nmap <Leader>s :update<CR>
 nmap <Leader>u :UndotreeToggle<CR>
 
 " use fzf to supply most fuzzy matching, if installed
-if isdirectory("/usr/local/opt/fzf")
+if isdirectory("/usr/local/opt/fzf") || isdirectory(expand("~/.fzf"))
   let g:ctrlp_map = ''
   nmap <c-p> :Files<CR> 
   nmap <Leader>a :Marks<CR>
