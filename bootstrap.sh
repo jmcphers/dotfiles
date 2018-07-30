@@ -18,9 +18,12 @@ if [[ "$OSTYPE" == "msys" ]]; then
        mkdir -p ~/AppData/Local/nvim/autoload
        curl -o ~/AppData/Local/nvim/autoload/plug.vim https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     fi
+else
+    # install vim-plug for neovim
+    curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
 
-# install vim-plug
+# install vim-plug for standard vim
 if [ ! -d $VIMRT/autoload/plug.vim ]; then 
     curl -fLo $VIMRT/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
@@ -36,6 +39,10 @@ if [[ "$OSTYPE" == "msys" ]]; then
     cp "$DOTFILES/vim/.vimrc" "$VIMRC" 
     cp "$DOTFILES/init-windows.vim" "$NEOVIMRC/init.vim" 
 else
+    # setup zpretzo
+    if [! -d ~/.zprezto ]; then
+        git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+    fi
     # use stow to set up symlinks
     stow neovim
     stow todo.txt
