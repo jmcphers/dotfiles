@@ -40,7 +40,7 @@ if [[ "$OSTYPE" == "msys" ]]; then
     cp "$DOTFILES/init-windows.vim" "$NEOVIMRC/init.vim" 
 else
     # setup zpretzo
-    if [! -d ~/.zprezto ]; then
+    if [ ! -d ~/.zprezto ]; then
         git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
     fi
     # use stow to set up symlinks

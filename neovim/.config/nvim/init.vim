@@ -37,6 +37,8 @@ if isdirectory("/usr/local/opt/fzf")
   Plug '/usr/local/opt/fzf'
 elseif isdirectory(expand("~/.fzf"))
   Plug '~/.fzf'
+elseif isdirectory("/home/linuxbrew/.linuxbrew/opt/fzf/bin")
+  Plug '/home/linuxbrew/.linuxbrew/opt/fzf'
 endif
 
 if has("python")
@@ -159,7 +161,7 @@ nmap <Leader>s :update<CR>
 nmap <Leader>u :UndotreeToggle<CR>
 
 " use fzf to supply most fuzzy matching, if installed
-if isdirectory("/usr/local/opt/fzf") || isdirectory(expand("~/.fzf"))
+if isdirectory("/usr/local/opt/fzf") || isdirectory(expand("~/.fzf")) || isdirectory("/home/linuxbrew/.linuxbrew/opt/fzf")
   let g:ctrlp_map = ''
   nmap <c-p> :Files<CR> 
   nmap <Leader>a :Marks<CR>
