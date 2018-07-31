@@ -28,3 +28,6 @@ fi
 export PATH=$PATH:~/bin:~/dotfiles/bin
 export GOPATH=~
 
+# add linuxbrew
+[ -d /home/linuxbrew/.linuxbrew/bin ] && export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin
+
