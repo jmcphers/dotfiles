@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+# adapted from advice at https://tbaggery.com/2011/08/08/effortless-ctags-with-git.html
+
+# figure out where we are
+DOTBIN="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+# install to .git by default
+DEST="$1"
+if [[ -z "$DEST" ]]; then 
+    DEST=./.git
+fi
+
+if [[ -f "$DEST/hooks/ctags" ]]; then
+  echo "Repository appears to be configured with ctags already."
+  exit 0
+fi
+
+# ensure we have a git hooks directory
+mkdir -p $DEST/hooks
+
+# add gtags hook
+ln -s $DOTBIN/ctags/ctags $DEST/hooks/ctags
+
+# hook various actions
+ln -s $DOTBIN/ctags/ctags-hook $DEST/hooks/post-commit
+ln -s $DOTBIN/ctags/ctags-hook $DEST/hooks/post-merge
+ln -s $DOTBIN/ctags/ctags-hook $DEST/hooks/post-checkout
+
+

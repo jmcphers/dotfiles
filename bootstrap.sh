@@ -58,16 +58,16 @@ mkdir -p ~/.vim/backup
 mkdir -p ~/.vim/swap
 mkdir -p ~/.vim/undo
 
-# setup vim with gtags (not available on windows)
+# setup vim with ctags (not available on windows)
 if [[ "$OSTYPE" != "msys" ]]; then
-    # make "git gtags" work
-    git config --global alias.gtags '!.git/hooks/gtags'
+    # make "git ctags" work
+    git config --global alias.ctags '!.git/hooks/ctags'
 
     # set up git template folder and init with gtags
-    GIT_TEMPLATE="~/.config/git/template"
+    GIT_TEMPLATE="$HOME/.config/git/template"
     mkdir -p $GIT_TEMPLATE/hooks
     git config --global init.templatedir "$GIT_TEMPLATE"
-    $DOTFILES bin/setup-git-gtags $GIT_TEMPLATE
+    $DOTFILES bin/setup-git-ctags $GIT_TEMPLATE
 fi
 
 
