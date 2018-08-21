@@ -31,6 +31,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'radenling/vim-dispatch-neovim'
 Plug 'w0rp/ale'
 Plug 'junegunn/fzf.vim'
+Plug 'chrisbra/Colorizer'
 
 " use fzf if already installed
 if isdirectory("/usr/local/opt/fzf")
@@ -148,6 +149,14 @@ au FileType markdown setlocal spell spelllang=en_us
 au FileType rmd setlocal spell spelllang=en_us
 au FileType gitcommit setlocal spell spelllang=en_us
 au FileType vimwiki setlocal spell spelllang=en_us
+
+" also in common code files so comments can be spellchecked
+au FileType cpp setlocal spell spelllang=en_us
+au FileType javascript setlocal spell spelllang=en_us
+au FileType typescript setlocal spell spelllang=en_us
+au FileType ruby setlocal spell spelllang=en_us
+au FileType java setlocal spell spelllang=en_us
+au FileType r setlocal spell spelllang=en_us
 
 " Shortcuts
 map <Leader>d :YcmCompleter GoToImprecise<CR>
@@ -274,4 +283,7 @@ au FileType cpp setlocal colorcolumn=100
 au FileType java setlocal colorcolumn=100
 au FileType javascript setlocal colorcolumn=100
 au FileType r setlocal colorcolumn=100
+
+" turn on auto color highlighting in CSS and HTML files
+let g:colorizer_auto_filetype='css,html'
 
