@@ -1,6 +1,3 @@
-set nocompatible
-filetype off
-
 call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'vim-airline/vim-airline'
@@ -252,9 +249,13 @@ let g:ycm_semantic_triggers['typescript'] = ['.']
 
 " UltiSnips configuration settings
 let g:UltiSnipsExpandTrigger="<c-j>"
-let g:UltiSnipsJumpForwardTrigger="<c-u>"
-let g:UltiSnipsJumpBackwardTrigger="<c-i>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 let g:UltiSnipsEditSplit="vertical"
+
+" use dotfiles to store snippet dictionaries
+set rtp+=~/dotfiles
+let g:UltiSnipsSnippetDirectories = ['~/dotfiles/UltiSnips', 'UltiSnips']
 
 " EditorConfig settings
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
