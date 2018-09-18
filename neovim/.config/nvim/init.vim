@@ -232,6 +232,7 @@ let g:ycm_filetype_blacklist = {
       \ 'pandoc':    1,
       \ 'qf':        1,
       \ 'rmd':       1,
+      \ 'rhelp':     1,
       \ 'tagbar':    1,
       \ 'text':      1,
       \ 'todo':      1,
