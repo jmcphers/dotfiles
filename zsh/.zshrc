@@ -10,10 +10,10 @@ alias z='fasd_cd'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # added by travis gem
-[ -f /Users/jmcphers/.travis/travis.sh ] && source /Users/jmcphers/.travis/travis.sh
+[ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
 
 # add tmuxinator
-source ~/.bin/tmuxinator.zsh
+[ -f ~/.bin/tmuxinator.zsh ] && source ~/.bin/tmuxinator.zsh
 
 # common env vars
 if [ -x "$(command -v nvim)" ]; then 
@@ -25,8 +25,13 @@ else
     export VISUAL=vim
     export EDITOR=vim
 fi
-export PATH=$PATH:~/bin:~/dotfiles/bin
+export PATH=$PATH:/usr/local/sbin:~/bin:~/dotfiles/bin
 export GOPATH=~
+
+# python runtime (MacOS)
+[ -d ~/Library/Python/2.7/bin ] && export PATH=$PATH:~/Library/Python/2.7/bin
+
+[ -d ~/.gem/ruby/2.3.0/bin ] && export PATH=$PATH:~/.gem/ruby/2.3.0/bin
 
 # add linuxbrew
 [ -d /home/linuxbrew/.linuxbrew/bin ] && export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin
