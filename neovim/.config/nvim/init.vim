@@ -7,6 +7,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-unimpaired'
 Plug 'marijnh/tern_for_vim'
 Plug 'mileszs/ack.vim'
 Plug 'scrooloose/nerdcommenter'
@@ -29,6 +30,9 @@ Plug 'radenling/vim-dispatch-neovim'
 Plug 'w0rp/ale'
 Plug 'junegunn/fzf.vim'
 Plug 'chrisbra/Colorizer'
+Plug 'airblade/vim-gitgutter'
+Plug 'kana/vim-textobj-user'
+Plug 'reedes/vim-textobj-quote'
 
 " use fzf if already installed
 if isdirectory("/usr/local/opt/fzf")
@@ -134,8 +138,8 @@ if has("win32") || has("win16")
 endif
 
 " RStudio
-au FileType cpp setlocal makeprg=make\ \-j4\ -C\ ~/rstudio-build
-nmap <Leader>rc :Dispatch cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -B~/rstudio-pro-build -H~/rstudio-pro/src/cpp<CR>
+au FileType cpp setlocal makeprg=make\ \-j4\ -C\ ~/git/rstudio/src/cpp-build
+nmap <Leader>rc :Dispatch cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -B~/git/rstudio/src/cpp-build -H~/git/rstudio/src/cpp<CR>
 nmap <Leader>m :Make<CR>
 
 " RStudio Connect
@@ -165,6 +169,8 @@ nmap <Leader>g :GtagsCursor<CR>
 nmap <Leader>n :noh<CR>
 nmap <Leader>s :update<CR>
 nmap <Leader>u :UndotreeToggle<CR>
+map <Leader>qc <Plug>ReplaceWithCurly
+map <Leader>qs <Plug>ReplaceWithStraight
 
 " use fzf to supply most fuzzy matching, if installed
 if isdirectory("/usr/local/opt/fzf") || isdirectory(expand("~/.fzf")) || isdirectory("/home/linuxbrew/.linuxbrew/opt/fzf")
@@ -215,6 +221,10 @@ let g:airline#extensions#whitespace#enabled = 0
 " [c         previous hunk
 " <Leader>hs stage hunk
 " <Leader>hr revert hunk
+"
+" Disable gitgutter by default for performance reasons; toggle with 
+" :GitGutterToggle
+let g:gitgutter_enabled = 0
 
 " use the silver searcher for ctrl-p browsing (if installed)
 let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
