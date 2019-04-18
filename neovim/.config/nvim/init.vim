@@ -14,12 +14,10 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/goyo.vim'
 Plug 'fatih/vim-go', { 'for': 'go' }
-Plug 'leafgarland/typescript-vim'
 Plug 'freitass/todo.txt-vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'shawncplus/phpcomplete.vim', { 'for': 'php' }
 Plug 'vimwiki/vimwiki'
-Plug 'vim-scripts/gtags.vim'
 Plug 'flazz/vim-colorschemes'
 Plug 'jalvesaq/vimcmdline'
 Plug 'mbbill/undotree'
@@ -33,6 +31,7 @@ Plug 'chrisbra/Colorizer'
 Plug 'airblade/vim-gitgutter'
 Plug 'kana/vim-textobj-user'
 Plug 'reedes/vim-textobj-quote'
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 
 " use fzf if already installed
 if isdirectory("/usr/local/opt/fzf")
@@ -45,25 +44,6 @@ endif
 
 if has("python")
   Plug 'SirVer/ultisnips'
-endif
-
-" TypeScript tools/server
-function! InstallTSServer(info)
-  if a:info.status == 'installed' || a:info.force
-    !npm install -g typescript
-    !npm install -g clausreinke/typescript-tools
-  endif
-endfunction
-Plug 'clausreinke/typescript-tools.vim', { 'do': function('InstallTSServer') }
-
-" YouCompleteMe requires compilation after install
-function! BuildYCM(info)
-  if a:info.status == 'installed' || a:info.force
-    !./install.py --clang-completer --js-completer --java-completer
-  endif
-endfunction
-if has("python")
-  Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
 endif
 
 " this plugin adds github magic; it requires a personal access token w/ repo 
@@ -103,13 +83,6 @@ set listchars+=space:·,eol:¬
 set nrformats-=octal
 set scrolloff=1
 set inccommand=nosplit
-
-" use gnu global to provide tags
-set cscopetag
-set cscopeprg=gtags-cscope
-" TODO: it's still currently necessary to do "cs add GTAGS" in order to get
-" tag-jumping to work via ^] and friends. add some code to figure out the
-" project root and add the GTAGS file as appropriate.
 
 " Don't clutter local dirs, but keep backup/swap/undo files
 set backupdir=~/.vim/backup
@@ -163,9 +136,10 @@ au FileType r setlocal spell spelllang=en_us
 map <Leader>d :YcmCompleter GoToImprecise<CR>
 map <Leader>f :Ag <cword><CR>
 map <Leader>= :EasyAlign =<CR>
-nmap <Leader>t :sp ~/Dropbox/todo.txt<CR>
+nmap <Leader>d :sp ~/Dropbox/todo.txt<CR>
+nmap <Leader>t :Tags<CR>
 nmap <Leader>G :Ggrep <cword><CR>
-nmap <Leader>g :GtagsCursor<CR>
+nmap <Leader>g :GitGutterBufferToggle<CR>
 nmap <Leader>n :noh<CR>
 nmap <Leader>s :update<CR>
 nmap <Leader>u :UndotreeToggle<CR>
@@ -211,6 +185,16 @@ au FileType go nmap <Leader>ds <Plug>(go-def-split)
 au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
 au FileType go nmap <Leader>dt <Plug>(go-def-tab)
 
+" Coc (LSP)
+nmap <Leader>lc <Plug>(coc-declaration)
+nmap <Leader>ld <Plug>(coc-definition)
+nmap <Leader>le <Plug>(coc-diagnostic-info)
+nmap <Leader>lf <Plug>(coc-fix-current)
+nmap <Leader>li <Plug>(coc-implementation)
+nmap <Leader>ln <Plug>(coc-diagnostic-next)
+nmap <Leader>lp <Plug>(coc-diagnostic-prev)
+nmap <Leader>lr <Plug>(coc-references)
+
 " Airline settings
 let g:airline#extensions#whitespace#enabled = 0
 
@@ -232,24 +216,9 @@ if executable('ag')
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 endif
 
-" disable youcompleteme for file types for which it's annoying
-let g:ycm_filetype_blacklist = {
-      \ 'gitcommit': 1,
-      \ 'infolog':   1,
-      \ 'mail':      1,
-      \ 'markdown':  1,
-      \ 'notes':     1,
-      \ 'pandoc':    1,
-      \ 'qf':        1,
-      \ 'rmd':       1,
-      \ 'rhelp':     1,
-      \ 'tagbar':    1,
-      \ 'text':      1,
-      \ 'todo':      1,
-      \ 'unite':     1,
-      \ 'vim':       1,
-      \ 'vimwiki':   1,
-\}
+autocmd FileType markdown let b:coc_suggest_disable = 1
+autocmd FileType vimwiki let b:coc_suggest_disable = 1
+autocmd FileType gitcommit let b:coc_suggest_disable = 1
  
 " Typescript
 au BufRead,BufNewFile *.ts      setlocal filetype=typescript
