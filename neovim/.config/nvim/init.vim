@@ -16,7 +16,6 @@ Plug 'junegunn/goyo.vim'
 Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'freitass/todo.txt-vim'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'shawncplus/phpcomplete.vim', { 'for': 'php' }
 Plug 'vimwiki/vimwiki'
 Plug 'flazz/vim-colorschemes'
 Plug 'jalvesaq/vimcmdline'
@@ -92,7 +91,6 @@ set undofile
 
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set termguicolors
-colors onedark
 
 " turn on syntax highlighting
 syn on
@@ -136,15 +134,19 @@ au FileType r setlocal spell spelllang=en_us
 map <Leader>d :YcmCompleter GoToImprecise<CR>
 map <Leader>f :Ag <cword><CR>
 map <Leader>= :EasyAlign =<CR>
-nmap <Leader>d :sp ~/Dropbox/todo.txt<CR>
+nmap <Leader>d :sp ~/git/vimwiki/todo.txt<CR>
 nmap <Leader>t :Tags<CR>
 nmap <Leader>G :Ggrep <cword><CR>
-nmap <Leader>g :GitGutterBufferToggle<CR>
 nmap <Leader>n :noh<CR>
 nmap <Leader>s :update<CR>
 nmap <Leader>u :UndotreeToggle<CR>
 map <Leader>qc <Plug>ReplaceWithCurly
 map <Leader>qs <Plug>ReplaceWithStraight
+nmap <Leader>gt :GitGutterBufferToggle<CR>
+nmap <Leader>gw :Gwrite<CR>
+nmap <Leader>gc :Gcommit<CR>
+nmap <Leader>gp :Gpush<CR>
+nmap <Leader>gs :Gstatus<CR>
 
 " use fzf to supply most fuzzy matching, if installed
 if isdirectory("/usr/local/opt/fzf") || isdirectory(expand("~/.fzf")) || isdirectory("/home/linuxbrew/.linuxbrew/opt/fzf")
@@ -219,14 +221,8 @@ endif
 autocmd FileType markdown let b:coc_suggest_disable = 1
 autocmd FileType vimwiki let b:coc_suggest_disable = 1
 autocmd FileType gitcommit let b:coc_suggest_disable = 1
+autocmd FileType todo let b:coc_suggest_disable = 1
  
-" Typescript
-au BufRead,BufNewFile *.ts      setlocal filetype=typescript
-if !exists("g:ycm_semantic_triggers")
-   let g:ycm_semantic_triggers = {}
-endif
-let g:ycm_semantic_triggers['typescript'] = ['.']
-
 " UltiSnips configuration settings
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
@@ -256,7 +252,9 @@ let g:ctrlp_by_filename = 1
 " sync vimwiki with dropbox directly on Windows (since we can't symlink
 " there)
 if has("win32")
-  let g:vimwiki_list = [ { 'path': '~\git\vimwiki' } ]
+  let g:vimwiki_list = [ { 'path': '~\git\vimwiki', 'syntax': 'markdown', 'ext': '.md' } ]
+else
+  let g:vimwiki_list = [ { 'syntax': 'markdown', 'ext': '.md' } ]
 endif
 
 " add margin/column guides for common code file types
