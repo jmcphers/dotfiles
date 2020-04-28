@@ -2,11 +2,11 @@
 set -e
 PATH="/usr/local/bin:$PATH"
 dir="`git rev-parse --git-dir`"
-trap 'rm -f "$dir/$$.tags"' EXIT
+trap 'rm -f "$$.tags"' EXIT
 
 # don't index .min.js files
 git ls-files | fgrep -v .min.js | \
-  ctags --tag-relative=yes -L - -f"$dir/$$.tags"
+  ctags --tag-relative=yes -L - -f"$$.tags"
 
-mv "$dir/$$.tags" "$dir/tags"
+mv "$$.tags" "tags"
 
