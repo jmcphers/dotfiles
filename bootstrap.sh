@@ -44,13 +44,13 @@ else
         git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
     fi
     # use stow to set up symlinks
-    stow neovim
-    stow todo.txt
-    stow tmux
-    stow zsh
-    stow mutt
-    stow vim
-    stow vrapper
+    stow --stow neovim --target=$HOME
+    stow --stow todo.txt --target=$HOME
+    stow --stow tmux --target=$HOME
+    stow --stow zsh --target=$HOME
+    stow --stow mutt --target=$HOME
+    stow --stow vim --target=$HOME
+    stow --stow vrapper --target=$HOME
 fi
 
 # create vim swapfile targets -- this keeps directories tidy
