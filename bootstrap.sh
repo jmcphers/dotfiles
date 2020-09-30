@@ -7,6 +7,19 @@ DOTFILES="$(dirname ${BASH_SOURCE[0]})"
 git config --global user.email "jonathan@rstudio.com"
 git config --global user.name "Jonathan McPherson"
 
+# ensure we have curl
+if ! command -v curl &> /dev/null; then
+    echo "This script requires the curl. Install curl and re-run."
+    exit 1
+fi
+
+if [[ "$OSTYPE" != "msys" ]]; then
+    if ! command -v stow &> /dev/null; then
+        echo "This script requires stow. Install stow and re-run"
+        exit 1
+    fi
+fi
+
 VIMRT=~/.vim
 VIMRC=~/.vimrc
 if [[ "$OSTYPE" == "msys" ]]; then
