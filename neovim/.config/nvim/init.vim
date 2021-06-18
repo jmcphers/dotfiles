@@ -1,15 +1,13 @@
 call plug#begin('~/.local/share/nvim/plugged')
 
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'hoob3rt/lualine.nvim'
+Plug 'kyazdani42/nvim-web-devicons'
 Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-unimpaired'
-Plug 'marijnh/tern_for_vim'
-Plug 'mileszs/ack.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/goyo.vim'
@@ -24,13 +22,14 @@ Plug 'machakann/vim-highlightedyank'
 Plug 'Olical/vim-enmasse'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'radenling/vim-dispatch-neovim'
-Plug 'w0rp/ale'
 Plug 'junegunn/fzf.vim'
 Plug 'chrisbra/Colorizer'
-Plug 'airblade/vim-gitgutter'
 Plug 'kana/vim-textobj-user'
 Plug 'reedes/vim-textobj-quote'
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-lua/completion-nvim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
 
 " use fzf if already installed
 if isdirectory("/usr/local/opt/fzf")
@@ -109,8 +108,8 @@ if has("win32") || has("win16")
 endif
 
 " RStudio
-au FileType cpp setlocal makeprg=make\ \-j4\ -C\ ~/git/rstudio/src/cpp-build
-nmap <Leader>rc :Dispatch cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -B~/git/rstudio/src/cpp-build -H~/git/rstudio/src/cpp<CR>
+au FileType cpp setlocal makeprg=make\ \-j4\ -C\ ~/git/rstudio/src/cpp/build
+nmap <Leader>rc :Dispatch cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -B~/git/rstudio/src/cpp/build -H~/git/rstudio/src/cpp<CR>
 nmap <Leader>m :Make<CR>
 
 " RStudio Connect
@@ -131,7 +130,6 @@ au FileType java setlocal spell spelllang=en_us
 au FileType r setlocal spell spelllang=en_us
 
 " Shortcuts
-map <Leader>d :YcmCompleter GoToImprecise<CR>
 map <Leader>f :Ag <cword><CR>
 map <Leader>= :EasyAlign =<CR>
 nmap <Leader>d :sp ~/git/vimwiki/todo.txt<CR>
@@ -187,16 +185,6 @@ au FileType go nmap <Leader>ds <Plug>(go-def-split)
 au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
 au FileType go nmap <Leader>dt <Plug>(go-def-tab)
 
-" Coc (LSP)
-nmap <Leader>lc <Plug>(coc-declaration)
-nmap <Leader>ld <Plug>(coc-definition)
-nmap <Leader>le <Plug>(coc-diagnostic-info)
-nmap <Leader>lf <Plug>(coc-fix-current)
-nmap <Leader>li <Plug>(coc-implementation)
-nmap <Leader>ln <Plug>(coc-diagnostic-next)
-nmap <Leader>lp <Plug>(coc-diagnostic-prev)
-nmap <Leader>lr <Plug>(coc-references)
-
 " Airline settings
 let g:airline#extensions#whitespace#enabled = 0
 
@@ -222,7 +210,10 @@ autocmd FileType markdown let b:coc_suggest_disable = 1
 autocmd FileType vimwiki let b:coc_suggest_disable = 1
 autocmd FileType gitcommit let b:coc_suggest_disable = 1
 autocmd FileType todo let b:coc_suggest_disable = 1
- 
+
+ " Use completion-nvim in every buffer
+autocmd BufEnter * lua require'completion'.on_attach()
+
 " UltiSnips configuration settings
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
@@ -249,8 +240,6 @@ endif
 " <C-D>)
 let g:ctrlp_by_filename = 1
 
-" sync vimwiki with dropbox directly on Windows (since we can't symlink
-" there)
 if has("win32")
   let g:vimwiki_list = [ { 'path': '~\git\vimwiki', 'syntax': 'markdown', 'ext': '.md' } ]
 else
@@ -262,6 +251,18 @@ au FileType cpp setlocal colorcolumn=100
 au FileType java setlocal colorcolumn=100
 au FileType javascript setlocal colorcolumn=100
 au FileType r setlocal colorcolumn=100
+   
+lua << EOF
+
+-- Install R language server: > install.packages("languageserver")
+require'lspconfig'.r_language_server.setup{}
+
+-- Install CSS language server: $ npm install -g vscode-css-languageserver-bin
+require'lspconfig'.cssls.setup{}
+
+-- Start lualine plugin
+require('lualine').setup()
+EOF
 
 " turn on auto color highlighting in CSS and HTML files
 let g:colorizer_auto_filetype='css,html'
