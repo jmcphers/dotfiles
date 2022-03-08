@@ -1,7 +1,7 @@
 call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'hoob3rt/lualine.nvim'
-Plug 'kyazdani42/nvim-web-devicons'
+Plug 'kyazdani42/nvim-web-devicons' 
 Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
@@ -27,8 +27,8 @@ Plug 'chrisbra/Colorizer'
 Plug 'kana/vim-textobj-user'
 Plug 'reedes/vim-textobj-quote'
 Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-lua/completion-nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'mileszs/ack.vim'
 
 
 " use fzf if already installed
@@ -142,9 +142,9 @@ map <Leader>qc <Plug>ReplaceWithCurly
 map <Leader>qs <Plug>ReplaceWithStraight
 nmap <Leader>gt :GitGutterBufferToggle<CR>
 nmap <Leader>gw :Gwrite<CR>
-nmap <Leader>gc :Gcommit<CR>
-nmap <Leader>gp :Gpush<CR>
-nmap <Leader>gs :Gstatus<CR>
+nmap <Leader>gc :Git commit<CR>
+nmap <Leader>gp :Git push<CR>
+nmap <Leader>gs :Git<CR>
 
 " use fzf to supply most fuzzy matching, if installed
 if isdirectory("/usr/local/opt/fzf") || isdirectory(expand("~/.fzf")) || isdirectory("/home/linuxbrew/.linuxbrew/opt/fzf")
@@ -212,7 +212,7 @@ autocmd FileType gitcommit let b:coc_suggest_disable = 1
 autocmd FileType todo let b:coc_suggest_disable = 1
 
  " Use completion-nvim in every buffer
-autocmd BufEnter * lua require'completion'.on_attach()
+ " autocmd BufEnter * lua require'completion'.on_attach()
 
 " UltiSnips configuration settings
 let g:UltiSnipsExpandTrigger="<c-j>"
@@ -261,7 +261,13 @@ require'lspconfig'.r_language_server.setup{}
 require'lspconfig'.cssls.setup{}
 
 -- Start lualine plugin
-require('lualine').setup()
+require('lualine').setup{
+    options = {
+        icons_enabled = 0,
+        section_separators = '',
+        component_separators = ''
+    }
+}
 EOF
 
 " turn on auto color highlighting in CSS and HTML files
