@@ -55,5 +55,13 @@ export GOPATH=~
 # add linuxbrew
 [ -d /home/linuxbrew/.linuxbrew/bin ] && export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin
 
+# add additional completions from homebrew if present
+if type brew &>/dev/null; then
+ FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+
+ autoload -Uz compinit
+ compinit
+fi
+
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
