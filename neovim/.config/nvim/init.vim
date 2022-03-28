@@ -34,6 +34,8 @@ Plug 'mileszs/ack.vim'
 " use fzf if already installed
 if isdirectory("/usr/local/opt/fzf")
   Plug '/usr/local/opt/fzf'
+elseif isdirectory("/opt/homebrew/opt/fzf")
+  Plug '/opt/homebrew/opt/fzf'
 elseif isdirectory(expand("~/.fzf"))
   Plug '~/.fzf'
 elseif isdirectory("/home/linuxbrew/.linuxbrew/opt/fzf/bin")
@@ -147,7 +149,7 @@ nmap <Leader>gp :Git push<CR>
 nmap <Leader>gs :Git<CR>
 
 " use fzf to supply most fuzzy matching, if installed
-if isdirectory("/usr/local/opt/fzf") || isdirectory(expand("~/.fzf")) || isdirectory("/home/linuxbrew/.linuxbrew/opt/fzf")
+if isdirectory("/opt/homebrew/opt/fzf") || isdirectory("/usr/local/opt/fzf") || isdirectory(expand("~/.fzf")) || isdirectory("/home/linuxbrew/.linuxbrew/opt/fzf")
   let g:ctrlp_map = ''
   nmap <c-p> :Files<CR> 
   nmap <Leader>a :Marks<CR>
@@ -162,12 +164,6 @@ function VimwikiSearch(str)
   execute ":Ack " a:str " ~/git/vimwiki"
 endfunction
 nmap <Leader>wf :call VimwikiSearch("")<Left><Left>
-
-" log current line as an entry to idonethis
-function LogDone()
-  echo system('achiever-cli --description ' . shellescape(getline(".")))
-endfunction
-nmap <Leader>idt :call LogDone()<CR>
 
 " integrate with par if needed
 if executable('par')
